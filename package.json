@@ -13,5 +13,8 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@nxext/stencil": "^15.6.0"
+  }
 }
