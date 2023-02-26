@@ -9,7 +9,9 @@
     <script nomodule src="/build/stencil-library.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="works"></my-component>
-    <counter-component btnText="Increase counter">Start</counter-component>
+    <text-component text="Stencil components"></text-component>
+    <counter-component btn_increase="+" btn_reset="reset">
+      <div slot="help">Information</div>
+    </counter-component>
   </body>
 </html>

@@ -7,29 +7,24 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface CounterComponent {
+        "btn_decrease": string;
         /**
-          * The button text
+          * The properties
          */
-        "btnText": string;
-        /**
-          * The color
-         */
-        "color": string;
+        "btn_increase": string;
+        "btn_reset": string;
+        "text_color": string;
     }
-    interface MyComponent {
+    interface TextComponent {
         /**
-          * The first name
+          * The text
          */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+        "text": string;
     }
+}
+export interface CounterComponentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCounterComponentElement;
 }
 declare global {
     interface HTMLCounterComponentElement extends Components.CounterComponent, HTMLStencilElement {
@@ -38,45 +33,37 @@ declare global {
         prototype: HTMLCounterComponentElement;
         new (): HTMLCounterComponentElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLTextComponentElement extends Components.TextComponent, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLTextComponentElement: {
+        prototype: HTMLTextComponentElement;
+        new (): HTMLTextComponentElement;
     };
     interface HTMLElementTagNameMap {
         "counter-component": HTMLCounterComponentElement;
-        "my-component": HTMLMyComponentElement;
+        "text-component": HTMLTextComponentElement;
     }
 }
 declare namespace LocalJSX {
     interface CounterComponent {
+        "btn_decrease"?: string;
         /**
-          * The button text
+          * The properties
          */
-        "btnText"?: string;
-        /**
-          * The color
-         */
-        "color"?: string;
+        "btn_increase"?: string;
+        "btn_reset"?: string;
+        "onDidReset"?: (event: CounterComponentCustomEvent<any>) => void;
+        "text_color"?: string;
     }
-    interface MyComponent {
+    interface TextComponent {
         /**
-          * The first name
+          * The text
          */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+        "text"?: string;
     }
     interface IntrinsicElements {
         "counter-component": CounterComponent;
-        "my-component": MyComponent;
+        "text-component": TextComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -84,7 +71,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "counter-component": LocalJSX.CounterComponent & JSXBase.HTMLAttributes<HTMLCounterComponentElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "text-component": LocalJSX.TextComponent & JSXBase.HTMLAttributes<HTMLTextComponentElement>;
         }
     }
 }

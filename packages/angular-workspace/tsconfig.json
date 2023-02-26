@@ -4,8 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "component-library": [
-        "dist/component-library"
+      "stencil-library/*": [
+        "../stencil-library/*"
       ]
     },
     "outDir": "./dist/out-tsc",
@@ -27,7 +27,7 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,3 +1,19 @@
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  width: 40px;
+  background: red;
+  color: #fff;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }

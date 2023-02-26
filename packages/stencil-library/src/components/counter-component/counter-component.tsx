@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'counter-component',
@@ -6,30 +6,44 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class CounterComponent {
-    /**
-   * The button text
+  /**
+   * The properties
    */
-    @Prop() btnText: string;
+  @Prop() btn_increase: string;
+  @Prop() btn_decrease: string;
+  @Prop() btn_reset: string;
+  @Prop() text_color: string;
 
-    /**
-     * The color
-     */
-    @Prop() color: string;
-  
-    /**
-     * The counter
-     */
-    @State() counter: number = 0;
+  /**
+   * The counter
+  */
+  @State() counter = 0;
 
-    increase() {
-      this.counter++;
-    }
+  @Event() didReset: EventEmitter;
+
+  increase() {
+    this.counter++;
+  }
+
+  decrease() {
+    this.counter++;
+  }
+
+  reset() {
+    this.counter = 0;
+    this.didReset.emit(true);
+  }
 
   render() {
     return (
       <Host>
-        <slot></slot>
-        <button onClick={() => this.increase()}>{this.btnText}</button>
+        <slot name="help"></slot>
+        <div class="row">
+          <button onClick={() => this.increase()}>{this.btn_increase}</button>
+          <label class={`counter ${this.text_color}`}>{this.counter}</label>
+          <button onClick={() => this.decrease()}>{this.btn_decrease}</button>
+        </div>
+        <div><button onClick={() => this.reset()}>{this.btn_reset}</button></div>
       </Host>
     );
   }
