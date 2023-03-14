@@ -1,32 +1,32 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('my-component', () => {
+describe('text-component', () => {
   it('renders', async () => {
     const page = await newE2EPage();
 
-    await page.setContent('<my-component></my-component>');
-    const element = await page.find('my-component');
+    await page.setContent('<text-component></text-component>');
+    const element = await page.find('text-component');
     expect(element).toHaveClass('hydrated');
   });
 
   it('renders changes to the name data', async () => {
     const page = await newE2EPage();
 
-    await page.setContent('<my-component></my-component>');
-    const component = await page.find('my-component');
-    const element = await page.find('my-component >>> div');
-    expect(element.textContent).toEqual(`Hello, World! I'm `);
+    await page.setContent('<text-component></text-component>');
+    const component = await page.find('text-component');
+    const element = await page.find('text-component >>> div');
+    expect(element.textContent).toEqual(``);
 
-    component.setProperty('first', 'James');
+    component.setProperty('text', 'James');
     await page.waitForChanges();
-    expect(element.textContent).toEqual(`Hello, World! I'm James`);
+    expect(element.textContent).toEqual(`James`);
 
-    component.setProperty('last', 'Quincy');
+    component.setProperty('text', 'Quincy');
     await page.waitForChanges();
-    expect(element.textContent).toEqual(`Hello, World! I'm James Quincy`);
+    expect(element.textContent).toEqual(`Quincy`);
 
-    component.setProperty('middle', 'Earl');
+    component.setProperty('text', 'Earl');
     await page.waitForChanges();
-    expect(element.textContent).toEqual(`Hello, World! I'm James Earl Quincy`);
+    expect(element.textContent).toEqual(`Earl`);
   });
 });

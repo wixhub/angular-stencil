@@ -5,32 +5,31 @@ describe('text-component', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [TextComponent],
-      html: '<my-component></my-component>',
+      html: '<text-component></text-component>',
     });
     expect(root).toEqualHtml(`
-      <my-component>
+      <text-component>
         <mock:shadow-root>
           <div>
-            Hello, World! I'm
           </div>
         </mock:shadow-root>
-      </my-component>
+      </text-component>
     `);
   });
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [TextComponent],
-      html: `<my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>`,
+      html: `<text-component text="Stencil"></text-component>`,
     });
     expect(root).toEqualHtml(`
-      <my-component first="Stencil" last="'Don't call me a framework' JS">
+      <text-component text="Stencil">
         <mock:shadow-root>
           <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
+            Stencil
           </div>
         </mock:shadow-root>
-      </my-component>
+      </text-component>
     `);
   });
 });
